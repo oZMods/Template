@@ -185,7 +185,7 @@ namespace oZTool {
             fConsole.WriteLine("---------");
 
             Process process = MemLib.theProc;
-            //TheChase-Win64-Shipping.exe+332293
+
             AoB S7 = new AoB(process, process.Handle, "F3 44 0F 11 99 A4 17 00 00");
             S7.setModule(process.MainModule);
             S7.FindPattern();
@@ -197,7 +197,6 @@ namespace oZTool {
             Globals.S7Offset = getS7.ToString("X");
             fConsole.WriteLine("---------");
 
-            //TheChase-Win64-Shipping.exe+3322EF
             AoB S6 = new AoB(process, process.Handle, "F3 44 0F 11 A9 AC 17 00 00");
             S6.setModule(process.MainModule);
             S6.FindPattern();
@@ -209,7 +208,6 @@ namespace oZTool {
             Globals.S6Offset = getS6.ToString("X");
             fConsole.WriteLine("---------");
 
-            //TheChase-Win64-Shipping.exe+3322E7
             AoB S5 = new AoB(process, process.Handle, "F3 44 0F 5E F0 0F 28 C2");
             S5.setModule(process.MainModule);
             S5.FindPattern();
@@ -221,7 +219,6 @@ namespace oZTool {
             Globals.S5Offset = getS5.ToString("X");
             fConsole.WriteLine("---------");
 
-            //TheChase-Win64-Shipping.exe+332293
             AoB S4 = new AoB(process, process.Handle, "F3 44 0F 11 91 9C 17 00 00");
             S4.setModule(process.MainModule);
             S4.FindPattern();
@@ -233,10 +230,8 @@ namespace oZTool {
             Globals.S4Offset = getS4.ToString("X");
             fConsole.WriteLine("---------");
 
-
             var procID = MemLib.getProcIDFromName(procName);
             var process1 = Process.GetProcessById(procID);
-
 
             gkh.HookedKeys.Add(Keys.F1);
             gkh.HookedKeys.Add(Keys.F2);
@@ -261,7 +256,6 @@ namespace oZTool {
             gkh.KeyUp += new KeyEventHandler(Hotkey9);
 
         }
-    
         #endregion
       
         #region Buttons
@@ -272,12 +266,14 @@ namespace oZTool {
             if (!backgroundWorker1.IsBusy)
                 backgroundWorker1.RunWorkerAsync();
         }
-        private void CloseBtn_Click(object sender, EventArgs e)
+    
+    private void CloseBtn_Click(object sender, EventArgs e)
         {
             MemLib.closeProcess();
             Application.Exit();
         }
-        private void MetroToggle1_CheckedChanged(object sender, EventArgs e)
+    
+    private void MetroToggle1_CheckedChanged(object sender, EventArgs e)
         {
             if (Attached is true)
             {
@@ -295,7 +291,8 @@ namespace oZTool {
                 OverlayBox.Checked = false;
             }
         }
-        private void RestartButton_Click(object sender, EventArgs e)
+    
+    private void RestartButton_Click(object sender, EventArgs e)
         {
             if (Attached is true)
             {
@@ -320,9 +317,7 @@ namespace oZTool {
             Globals.cheat7 = (e.KeyCode == Keys.F7);
             Globals.cheat8 = (e.KeyCode == Keys.F8);
             Globals.cheat9 = (e.KeyCode == Keys.F9);
-            
             Globals.Vis = (e.KeyCode == Keys.Insert);
-
 
             e.Handled = true;
         }
@@ -577,7 +572,7 @@ namespace oZTool {
                 {
 
                     MemLib.writeMemory(Globals.S6Offset, "bytes", "F3 44 0F 11 A1 AC 17 00 00");
-                    fConsole.WriteLine("Mana Recovery +120k%");
+                    fConsole.WriteLine("Mana Recovery +5000");
                     fConsole.WriteLine("---------");
                 }
                 else if (ManaBox.Checked == false)
