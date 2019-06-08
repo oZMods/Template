@@ -277,7 +277,7 @@ namespace oZTool {
                 OverlayBox.Checked = false;
             }
         }
-        private void RestartButton_Click(object sender, EventArgs e)
+            private void RestartButton_Click(object sender, EventArgs e)
         {
             if (Attached is true)
             {
@@ -285,9 +285,11 @@ namespace oZTool {
             }
             else if (Attached is false)
             {
+                fConsole.Clear();
                 fConsole.WriteLine("No reason to restart - haven't attached yet");
             }
         }
+
         #endregion
 
         #region Keys
