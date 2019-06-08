@@ -536,25 +536,40 @@ namespace oZTool {
         }
         #endregion
 
-        #region CheckedChanged
+          #region CheckedChanged
         private void StamBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (StamBox.Checked == true)
+            if (Attached == true)
             {
-                fConsole.WriteLine("Stamina Recovery +5000");
-                fConsole.WriteLine("---------");
-                MemLib.writeMemory(Globals.S7Offset, "bytes", "F3 44 0F 11 A1 A4 17");
+                if (StamBox.Checked == true)
+                {
+                    fConsole.WriteLine("Stamina Recovery +5000");
+                    fConsole.WriteLine("---------");
+                    MemLib.writeMemory(Globals.S7Offset, "bytes", "F3 44 0F 11 A1 A4 17");
+                }
+                else if (StamBox.Checked == false)
+                {
+                    fConsole.WriteLine("Stamina Recovery Off");
+                    fConsole.WriteLine("---------");
+                    MemLib.writeMemory(Globals.S7Offset, "bytes", "F3 44 0F 11 99 A4 17 00 00");
+                }
             }
-            else if (StamBox.Checked == false)
+            else if (Attached == false)
             {
-                fConsole.WriteLine("Stamina Recovery Off");
+                fConsole.Clear();
+
+                fConsole.WriteLine("Cannot activate without Attaching first");
                 fConsole.WriteLine("---------");
-                MemLib.writeMemory(Globals.S7Offset, "bytes", "F3 44 0F 11 99 A4 17 00 00");
-            }
+
+                StamBox.Checked = false;
+}
         }
 
         private void ManaBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (Attached == true)
+            {
+
                 if (ManaBox.Checked == true)
                 {
 
@@ -570,11 +585,25 @@ namespace oZTool {
                     MemLib.writeMemory(Globals.S6Offset, "bytes", "F3 44 0F 11 A9 AC 17 00 00");
                 }
             }
+            else if (Attached == false)
+            {
+
+                fConsole.Clear();
+
+                fConsole.WriteLine("Cannot activate without Attaching first");
+                fConsole.WriteLine("---------");
+
+                ManaBox.Checked = false;
+            }
+        }
 
         private void HealthBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (HealthBox.Checked == true)
+            if (Attached == true)
             {
+
+                if (HealthBox.Checked == true)
+                {
                 fConsole.WriteLine("Health Recovery +5000");
                 fConsole.WriteLine("---------");
                 MemLib.writeMemory(Globals.S4Offset, "bytes", "F3 44 0F 11 A1 9C 17 00 00");
@@ -584,11 +613,24 @@ namespace oZTool {
                 fConsole.WriteLine("Health Recovery Off");
                 fConsole.WriteLine("---------");
                 MemLib.writeMemory(Globals.S4Offset, "bytes", "F3 44 0F 11 91 9C 17 00 00");
+                }
+            }
+            else if (Attached == false)
+            {
+                fConsole.Clear();
+
+                fConsole.WriteLine("Cannot activate without Attaching first");
+                fConsole.WriteLine("---------");
+
+                HealthBox.Checked = false;
             }
         }
 
         private void RageBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (Attached == true)
+            { 
+
             if (RageBox.Checked == true)
             {
 
@@ -603,6 +645,16 @@ namespace oZTool {
                 fConsole.WriteLine("---------");
 
                 MemLib.writeMemory(Globals.S5Offset, "bytes", "F3 44 0F 5E F0 0F 28 C2");
+                }
+            }
+            else if (Attached == false)
+            {
+                fConsole.Clear();
+
+                fConsole.WriteLine("Cannot activate without Attaching first");
+                fConsole.WriteLine("---------");
+
+                RageBox.Checked = false;
             }
         }
         #endregion
